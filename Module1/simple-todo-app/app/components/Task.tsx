@@ -7,6 +7,8 @@ import React, { FormEventHandler, useState } from "react";
 import { useRouter } from "next/navigation";
 import Modal from "./Modal";
 import { deleteTodo, editTodo } from "@/api";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 
 interface TaskProps {
     task: ITask
@@ -42,13 +44,13 @@ const Task: React.FC<TaskProps> = ({ task }) => {
             <form onSubmit={handleSubmitEditTodo}>
                 <h3 className="font-bold text-lg" >Edit Task</h3>
                 <div className="modal-action" >
-                <input 
+                <Input 
                 value={taskToEdit}
                 onChange={(e) => setTaskToEdit(e.target.value)}
                 type="text" 
                 placeholder="Type here" 
-                className="input input-bordered w-full " />
-                <button type="submit" className="btn">Submit</button>
+                className="w-full" />
+                <Button type="submit">Submit</Button>
                 </div>
             </form>
         </Modal>
@@ -58,10 +60,9 @@ const Task: React.FC<TaskProps> = ({ task }) => {
         <Modal modalOpen={openModalDeleted} setModalOpen={setOpenModalDeleted}>
             <h3 className="text-lg" >Are you sure, you want to delete this task?</h3>
             <div className="modal-action">
-                <button
+                <Button
                 onClick={() => handleDeleteTask(task.id)}
-                className="btn"
-                >Yes</button>
+                >Yes</Button>
             </div>
         </Modal>
     </td>
