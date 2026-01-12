@@ -2,26 +2,30 @@
 
 import { CiCirclePlus } from 'react-icons/ci';
 import Modal from './Modal';
-import { FormEventHandler, useState } from 'react';
+import { useState } from 'react';
 import { addTodo } from '@/api';
 import { useRouter } from 'next/navigation';
 import { v4 as uuidv4 } from 'uuid';
 import { Button } from "@/components/ui/button"
 import { Input } from '@/components/ui/input';
+import { useForm } from "react-hook-form"
 
 const AddTask = () => {
     const router = useRouter();
     const [modalOpen, setModalOpen] = useState<boolean>(false);
 
-    const [newTaskValue, setNewTaskValue] = useState<string>('')
+    type FormValues = {
+        text: string
+    }
 
-    const handleSubmitNewTodo: FormEventHandler<HTMLFormElement> = async (e) => {
-        e.preventDefault();
-        await addTodo ({
+    const { register, handleSubmit, reset } = useForm<FormValues>()
+
+    const onSubmit = async (data: FormValues) => {
+        await addTodo({
             id: uuidv4(),
-            text: newTaskValue
+            text: data.text
         })
-        setNewTaskValue("");
+        reset()
         setModalOpen(false)
         router.refresh()
     }
@@ -35,17 +39,16 @@ const AddTask = () => {
         </Button>
 
         <Modal modalOpen={modalOpen} setModalOpen={setModalOpen}>
-            <form onSubmit={handleSubmitNewTodo}>
-                <h3 className="font-bold text-lg" >Add new task</h3>
-                <div className="modal-action" >
-                <Input 
-                value={newTaskValue}
-                onChange={(e) => setNewTaskValue(e.target.value)}
-                type="text" 
-                placeholder="Type here" 
-                className="w-full" />
-                <Button type="submit">Submit</Button>
-                </div>
+            <form onSubmit={handleSubmit(onSubmit)}>
+            <h3 className="font-bold text-lg"> Add new task </h3>
+            <div className="modal-action">
+                <Input
+                {...register("text")}
+                placeholder="Type here"
+                className="w-full"
+                />
+                <Button type="submit"> Submit </Button>
+            </div>
             </form>
         </Modal>
     </div>
