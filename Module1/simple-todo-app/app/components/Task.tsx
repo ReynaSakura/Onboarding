@@ -9,6 +9,7 @@ import Modal from "./Modal";
 import { deleteTodo, editTodo } from "@/api";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 
 interface TaskProps {
     task: ITask
@@ -19,21 +20,34 @@ const Task: React.FC<TaskProps> = ({ task }) => {
     const [openModalEdit, setOpenModalEdit] = useState<boolean>(false);
     const [openModalDeleted, setOpenModalDeleted] = useState<boolean>(false);
     const [taskToEdit, setTaskToEdit] = useState<string>(task.text)
-    const handleSubmitEditTodo: FormEventHandler<HTMLFormElement> = async (e) => {
-            e.preventDefault();
-            await editTodo ({
-                id: task.id,
-                text: taskToEdit
+
+    const queryClient = useQueryClient()
+    
+    const editTask = useMutation({
+        mutationFn: editTodo,
+        onSuccess: () => {
+            queryClient.invalidateQueries({ 
+                queryKey: ['todos'] 
             })
             setOpenModalEdit(false)
-            router.refresh()
-        }
-    
-    const handleDeleteTask = async (id: string) => {
-        await deleteTodo(id);
-        setOpenModalDeleted(false);
-        router.refresh()
+        },
+    })
+
+    const handleSubmitEditTodo: FormEventHandler<HTMLFormElement> = (e) => {
+        e.preventDefault()
+        editTask.mutate({
+            id: task.id,
+            text: taskToEdit,
+        })
     }
+    
+    const handleDeleteTask = useMutation({
+        mutationFn: deleteTodo,
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ['todos'] })
+            setOpenModalDeleted(false)
+        },
+    })
 
     return (
     <tr key={task.id}>
@@ -61,7 +75,7 @@ const Task: React.FC<TaskProps> = ({ task }) => {
             <h3 className="text-lg" >Are you sure, you want to delete this task?</h3>
             <div className="modal-action">
                 <Button
-                onClick={() => handleDeleteTask(task.id)}
+                onClick={() => handleDeleteTask.mutate(task.id)}
                 >Yes</Button>
             </div>
         </Modal>
