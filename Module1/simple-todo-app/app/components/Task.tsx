@@ -22,7 +22,7 @@ const Task: React.FC<TaskProps> = ({ task }) => {
     const [taskToEdit, setTaskToEdit] = useState<string>(task.text)
 
     const queryClient = useQueryClient()
-    
+
     const editTask = useMutation({
         mutationFn: editTodo,
         onSuccess: () => {
@@ -44,7 +44,9 @@ const Task: React.FC<TaskProps> = ({ task }) => {
     const handleDeleteTask = useMutation({
         mutationFn: deleteTodo,
         onSuccess: () => {
-            queryClient.invalidateQueries({ queryKey: ['todos'] })
+            queryClient.invalidateQueries({ 
+                queryKey: ['todos'] 
+            })
             setOpenModalDeleted(false)
         },
     })
