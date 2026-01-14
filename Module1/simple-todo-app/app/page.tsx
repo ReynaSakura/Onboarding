@@ -21,7 +21,7 @@ export default function Home() {
       <h1 className="text-2xl font-bold">Todo List App</h1>
       <AddTask/>
       </div>
-      {tasks && <TodoList tasks={tasks} />}
+      <TodoList /> 
     </main>
   );
 }

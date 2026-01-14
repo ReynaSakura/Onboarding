@@ -1,10 +1,6 @@
 {
   "tasks": [
     {
-      "id": "a3970ee0-638d-46ba-8ff0-1553161a7377",
-      "text": "Study Math"
-    },
-    {
       "id": "37720873-6250-4dd0-9304-ca39ce78462f",
       "text": "Practice English"
     },
@@ -14,6 +10,10 @@
     },
     {
       "id": "78ebed64-7dae-43b6-b083-1b8d5bc5e3e0",
+      "text": "Eat Breakfast"
+    },
+    {
+      "id": "ad1c79d5-f90c-4ac9-87c1-ef420c2afb82",
       "text": "Eat Breakfast"
     }
   ]
