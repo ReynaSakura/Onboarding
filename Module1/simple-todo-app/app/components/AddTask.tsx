@@ -4,14 +4,22 @@ import { CiCirclePlus } from 'react-icons/ci';
 import Modal from './Modal';
 import { useState } from 'react';
 import { addTodo } from '@/api';
-import { useRouter } from 'next/navigation';
 import { v4 as uuidv4 } from 'uuid';
 import { Button } from "@/components/ui/button"
 import { Input } from '@/components/ui/input';
 import { useForm } from "react-hook-form"
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 
 const AddTask = () => {
-    const router = useRouter();
+
+    const queryClient = useQueryClient()
+
+    const addTodoMutation = useMutation({
+        mutationFn: addTodo,
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ['todos'] })
+        },
+    })
     const [modalOpen, setModalOpen] = useState<boolean>(false);
 
     type FormValues = {
@@ -20,14 +28,13 @@ const AddTask = () => {
 
     const { register, handleSubmit, reset } = useForm<FormValues>()
 
-    const onSubmit = async (data: FormValues) => {
-        await addTodo({
+    const onSubmit = (data: FormValues) => {
+        addTodoMutation.mutate({
             id: uuidv4(),
-            text: data.text
+            text: data.text,
         })
         reset()
         setModalOpen(false)
-        router.refresh()
     }
     return <div>
         <Button 
