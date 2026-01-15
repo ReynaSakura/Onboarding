@@ -1,23 +1,19 @@
 {
   "tasks": [
     {
-      "id": "a3970ee0-638d-46ba-8ff0-1553161a7377",
-      "text": "Study Math"
-    },
-    {
       "id": "37720873-6250-4dd0-9304-ca39ce78462f",
       "text": "Practice English"
     },
     {
       "id": "5804e63b-08d2-4918-b87e-b35ec4bc7527",
-      "text": "Cook Dinner"
+      "text": "Cook Dinner for A"
     },
     {
-      "id": "417ccf31-74bc-494a-9e1a-3cded1f46017",
-      "text": "Practice Chem"
+      "id": "78ebed64-7dae-43b6-b083-1b8d5bc5e3e0",
+      "text": "Eat Breakfast"
     },
     {
-      "id": "3c3f210a-580d-4b41-b941-961546299ffd",
+      "id": "ad1c79d5-f90c-4ac9-87c1-ef420c2afb82",
       "text": "Eat Breakfast"
     }
   ]
