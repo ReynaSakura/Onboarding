@@ -5,6 +5,9 @@
 - [X] Module 3: React Hook Form Integration — Rebuild the form using react-hook-form
 - [X] Module 4: Tanstack query — Use TanStack Query for fetching, caching and managing server state
 
+# Mobile App Onboarding
+- [ ] Module 0 - Basic React Native and Expo
+- [ ] Module 1 - Build a Mobile Todo App
 # Backend Onboarding
 - [ ] Module 0: Backend Fundamentals (C#, .NET) — Learn or review C#, OOP, and .NET basics
 - [ ] Module 1: EFCore and Basic Web API — Build your first .NET Web API and connect to SQL Server
