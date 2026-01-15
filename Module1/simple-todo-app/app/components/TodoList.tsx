@@ -1,14 +1,11 @@
 'use client'
 
-import { useQuery } from '@tanstack/react-query'
-import { getAllTodos } from '@/api'
+import { tasksQuery } from '../hooks/tasksQuery'
 import Task from "./Task";   
 
 const TodoList = () => {
-  const { data: tasks = [], isLoading } = useQuery({
-    queryKey: ['todos'],
-    queryFn: getAllTodos,
-  })
+  const { data: tasks = [], isLoading } = tasksQuery()
+
   if (isLoading) return <p>Loading...</p>
   
   return (
