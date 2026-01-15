@@ -1,10 +1,10 @@
 'use client'
 
-import { tasksQuery } from '../hooks/tasksQuery'
-import Task from "./Task";   
+import { useTasksQuery } from '../hooks/useTasksQuery'
+import TodoItem from "./TodoItem";   
 
 const TodoList = () => {
-  const { data: tasks = [], isLoading } = tasksQuery()
+  const { data: tasks = [], isLoading } = useTasksQuery()
 
   if (isLoading) return <p>Loading...</p>
   
@@ -20,7 +20,7 @@ const TodoList = () => {
       </thead>
       <tbody>
           {tasks.map((task) => (
-              <Task key={task.id} task={task}/>
+              <TodoItem key={task.id} task={task}/>
           ))}
       </tbody>
     </table>

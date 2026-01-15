@@ -1,7 +1,7 @@
 'use client'
 import { useQuery } from '@tanstack/react-query'
 import { getAllTodos } from "@/api";
-import AddTask from "./components/AddTask";
+import AddTask from "./components/AddTaskForm";
 import TodoList from "./components/TodoList";
 
 export default function Home() {

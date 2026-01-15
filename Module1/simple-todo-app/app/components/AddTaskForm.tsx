@@ -3,23 +3,15 @@
 import { CiCirclePlus } from 'react-icons/ci';
 import Modal from './Modal';
 import { useState } from 'react';
-import { addTodo } from '@/api';
 import { v4 as uuidv4 } from 'uuid';
 import { Button } from "@/components/ui/button"
 import { Input } from '@/components/ui/input';
 import { useForm } from "react-hook-form"
-import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { useTaskMutations } from '../hooks/useTaskMutations'
 
-const AddTask = () => {
+const AddTaskForm = () => {
 
-    const queryClient = useQueryClient()
-
-    const addTodoMutation = useMutation({
-        mutationFn: addTodo,
-        onSuccess: () => {
-            queryClient.invalidateQueries({ queryKey: ['todos'] })
-        },
-    })
+    const { addTask } = useTaskMutations()
     const [modalOpen, setModalOpen] = useState<boolean>(false);
 
     type FormValues = {
@@ -29,7 +21,7 @@ const AddTask = () => {
     const { register, handleSubmit, reset } = useForm<FormValues>()
 
     const onSubmit = (data: FormValues) => {
-        addTodoMutation.mutate({
+        addTask.mutate({
             id: uuidv4(),
             text: data.text,
         })
@@ -61,4 +53,4 @@ const AddTask = () => {
     </div>
 }
 
-export default AddTask;
+export default AddTaskForm;
