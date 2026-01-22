@@ -5,9 +5,9 @@ export default function Index() {
     <View 
     style={styles.container}
     >
-      <Text
-      style={styles.text}
-      >Hello Expo.</Text>
+      <Text style={styles.text}>
+        Hello Expo.
+      </Text>
     </View>
   );
 }
@@ -21,5 +21,10 @@ const styles = StyleSheet.create({
   },
   text: {
     color: "#fff",
+  },
+  button: {
+   fontSize: 20,
+   textDecorationLine: "underline",
+   color: "#fff",
   },
 });
