@@ -1,12 +1,5 @@
 import { useState } from "react";
-import {
-  ActivityIndicator,
-  FlatList,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { ActivityIndicator, FlatList, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import FilterButtons from "../components/FilterButtons";
 import TodoCard from "../components/TodoCard";
 import TodoModal from "../components/TodoModal";
@@ -17,8 +10,7 @@ export default function CalendarScreen() {
   const [modalVisible, setModalVisible] = useState(false);
   const [filter, setFilter] = useState<FilterStatus>("all");
 
-  const { todos, isLoading, isError, error, addTodo, updateTodo, deleteTodo } =
-    useTodos();
+  const { todos, isLoading, isError, error, addTodo, updateTodo, deleteTodo } = useTodos();
 
   const handleAddTodo = ({
     title,
@@ -26,11 +18,7 @@ export default function CalendarScreen() {
   }: {
     title: string;
     description: string;
-  }) => {
-    if (!title.trim()) {
-      alert("Error: Title cannot be empty!");
-      return;
-    }
+  }) => { 
     addTodo({
       title,
       description,
@@ -54,14 +42,6 @@ export default function CalendarScreen() {
     );
   }
 
-  if (isError) {
-    return (
-      <View style={styles.centered}>
-        <Text>Error: {(error as Error).message}</Text>
-      </View>
-    );
-  }
-
   return (
     <View style={styles.container}>
       <FlatList
@@ -73,7 +53,9 @@ export default function CalendarScreen() {
             onToggleComplete={updateTodo}
           />
         )}
-        keyExtractor={(item) => item.id.toString()}
+        keyExtractor={
+          (item) => item.id.toString()
+        }
         ListHeaderComponent={
           <View style={styles.header}>
             <View style={styles.titleContainer}>
@@ -99,8 +81,16 @@ export default function CalendarScreen() {
 }
 
 const styles = StyleSheet.create({
-  centered: { flex: 1, justifyContent: "center", alignItems: "center" },
-  container: { flex: 1, paddingHorizontal: 16, backgroundColor: "#f5f5f5" },
+  centered: { 
+    flex: 1, 
+    justifyContent: "center", 
+    alignItems: "center" 
+  },
+  container: { 
+    flex: 1, 
+    paddingHorizontal: 16, 
+    backgroundColor: "#f5f5f5" 
+  },
   header: {
     paddingTop: 20,
   },

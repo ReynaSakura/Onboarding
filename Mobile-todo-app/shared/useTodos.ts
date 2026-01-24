@@ -17,21 +17,27 @@ export const useTodos = () => {
   const addTodoMutation = useMutation({
     mutationFn: addTodo,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["todos"] });
+      queryClient.invalidateQueries({ 
+        queryKey: ["todos"] 
+      });
     },
   });
 
   const updateTodoMutation = useMutation({
     mutationFn: updateTodo,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["todos"] });
+      queryClient.invalidateQueries({ 
+        queryKey: ["todos"] 
+      });
     },
   });
 
   const deleteTodoMutation = useMutation({
     mutationFn: deleteTodo,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["todos"] });
+      queryClient.invalidateQueries({ 
+        queryKey: ["todos"] 
+      });
     },
   });
 

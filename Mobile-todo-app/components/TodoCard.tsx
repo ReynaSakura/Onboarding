@@ -7,11 +7,7 @@ type TodoCardProps = {
   onToggleComplete: (todo: Todo) => void;
 };
 
-export default function TodoCard({
-  todo,
-  onDelete,
-  onToggleComplete,
-}: TodoCardProps) {
+export default function TodoCard({ todo, onDelete, onToggleComplete }: TodoCardProps) {
   return (
     <View style={[styles.card, todo.completed && styles.completedCard]}>
       <View>

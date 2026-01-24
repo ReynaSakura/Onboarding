@@ -6,10 +6,7 @@ type FilterButtonsProps = {
   setFilter: (filter: FilterStatus) => void;
 };
 
-export default function FilterButtons({
-  filter,
-  setFilter,
-}: FilterButtonsProps) {
+export default function FilterButtons({ filter, setFilter }: FilterButtonsProps) {
   const getButtonStyle = (status: FilterStatus) => [
     styles.button,
     filter === status ? styles.activeButton : styles.inactiveButton,

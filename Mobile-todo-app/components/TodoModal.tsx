@@ -8,21 +8,23 @@ import {
   View,
 } from "react-native";
 
-type FormData = { title: string; description: string };
+type FormData = { 
+  title: string; 
+  description: string 
+};
 
 type TodoModalProps = {
   visible: boolean;
   onClose: () => void;
-  onSubmit: (data: { title: string; description: string }) => void;
+  onSubmit: (data: FormData) => void;
 };
 
-export default function TodoModal({
-  visible,
-  onClose,
-  onSubmit,
-}: TodoModalProps) {
+export default function TodoModal({ visible, onClose, onSubmit }: TodoModalProps) {
   const { control, handleSubmit, reset } = useForm<FormData>({
-    defaultValues: { title: "", description: "" },
+    defaultValues: { 
+      title: "", 
+      description: "" 
+    },
   });
 
   const handleFormSubmit = (data: FormData) => {
@@ -31,17 +33,22 @@ export default function TodoModal({
   };
 
   return (
-    <Modal visible={visible} onRequestClose={onClose} transparent={true}>
+    <Modal 
+      visible={visible} 
+      onRequestClose={onClose} 
+      transparent={true}>
       <View style={styles.centeredView}>
         <View style={styles.modalView}>
           <Text style={styles.modalText}>Create a New To-Do</Text>
           <Controller
             control={control}
             name="title"
-            render={({ field: { onChange, onBlur, value } }) => (
+            render={({ field: { 
+              onChange, onBlur, value 
+            } }) => (
               <TextInput
                 style={styles.input}
-                placeholder="Title"
+                placeholder="Todo Title"
                 onBlur={onBlur}
                 onChangeText={onChange}
                 value={value}
@@ -51,10 +58,12 @@ export default function TodoModal({
           <Controller
             control={control}
             name="description"
-            render={({ field: { onChange, onBlur, value } }) => (
+            render={({ field: { 
+              onChange, onBlur, value 
+            } }) => (
               <TextInput
                 style={styles.input}
-                placeholder="Description"
+                placeholder="Todo Description"
                 onBlur={onBlur}
                 onChangeText={onChange}
                 value={value}
