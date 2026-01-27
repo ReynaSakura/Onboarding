@@ -1,5 +1,6 @@
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { FilterStatus } from "../types";
+import { Text, TouchableOpacity, View } from "react-native";
+import { FilterStatus } from "../models/todo";
+import { styles } from "./FilterButtons.styles";
 
 type FilterButtonsProps = {
   filter: FilterStatus;
@@ -41,35 +42,5 @@ export default function FilterButtons({ filter, setFilter }: FilterButtonsProps)
   );
 }
 
-const styles = StyleSheet.create({
-  filterContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    marginBottom: 20,
-    backgroundColor: "#eee",
-    borderRadius: 8,
-    padding: 4,
-  },
-  button: {
-    flex: 1,
-    paddingVertical: 10,
-    alignItems: "center",
-    borderRadius: 6,
-  },
-  activeButton: {
-    backgroundColor: "#3498db",
-  },
-  inactiveButton: {
-    backgroundColor: "transparent",
-  },
-  buttonText: {
-    fontSize: 14,
-    fontWeight: "600",
-  },
-  activeText: {
-    color: "white",
-  },
-  inactiveText: {
-    color: "gray",
-  },
-});
+
+
