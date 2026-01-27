@@ -1,4 +1,4 @@
-import { Todo } from "../types";
+import { Todo } from "../models/todo";
 
 const API_BASE_URL = "http://localhost:3000";
 
