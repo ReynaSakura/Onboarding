@@ -11,7 +11,7 @@ export default function WelcomeScreen() {
 
   const handleLogin = async () => {
     await login();
-    router.replace("/(protected)");
+    router.replace("/(protected)" as any);
   };
 
   return (
