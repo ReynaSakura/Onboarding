@@ -17,6 +17,5 @@ export default function Index() {
     return <Redirect href="/(protected)" />;
   }
 
-  // If not authenticated, go to public
   return <Redirect href="/(public)" />;
 }
