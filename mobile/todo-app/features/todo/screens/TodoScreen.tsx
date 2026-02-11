@@ -7,9 +7,19 @@ import { useTodos } from "../queries/useTodos";
 import { FilterStatus, Todo } from "../models/todo";
 import { styles } from "./TodoScreen.styles";
 
+import { useRouter } from "expo-router";
+import { useAuth } from "../../shared/hooks/useAuth";
+
 export default function TodoScreen() {
+  const { logout } = useAuth();
+  const router = useRouter();
   const [modalVisible, setModalVisible] = useState(false);
   const [filter, setFilter] = useState<FilterStatus>("all");
+
+  const handleLogout = async () => {
+    await logout();
+    router.replace("/");
+  };
 
   const { todos, isLoading, isError, error, addTodo, updateTodo, deleteTodo } = useTodos();
 
@@ -61,12 +71,20 @@ export default function TodoScreen() {
           <View style={styles.header}>
             <View style={styles.titleContainer}>
               <Text style={styles.headerTitle}>My To-Dos</Text>
-              <TouchableOpacity
-                style={styles.addButton}
-                onPress={() => setModalVisible(true)}
-              >
-                <Text style={styles.addButtonText}>+ Add Todo</Text>
-              </TouchableOpacity>
+              <View style={{ flexDirection: 'row', gap: 10 }}>
+                <TouchableOpacity
+                  style={[styles.addButton, { backgroundColor: '#ff4444' }]}
+                  onPress={handleLogout}
+                >
+                  <Text style={styles.addButtonText}>Logout</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  style={styles.addButton}
+                  onPress={() => setModalVisible(true)}
+                >
+                  <Text style={styles.addButtonText}>+ Add Todo</Text>
+                </TouchableOpacity>
+              </View>
             </View>
             <FilterButtons filter={filter} setFilter={setFilter} />
           </View>
