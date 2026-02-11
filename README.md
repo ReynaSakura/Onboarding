@@ -45,7 +45,7 @@ Located in `/backend`
 - [x] **Module 0**: Basic React Native and Expo
 - [x] **Module 1**: Build a Mobile Todo App
 - [x] **Module 2**: Feature Based Folder structure
-- [ ] **Module 3**: Protected Routes (Auth & SecureStore)
+- [x] **Module 3**: Protected Routes (Auth & SecureStore)
 
 ### 🖥️ Backend Onboarding
 
@@ -55,3 +55,11 @@ Located in `/backend`
 - [ ] **Module 3**: Connect Frontend to API
 - [ ] **Module 4**: EF Core relations
 - [ ] **Module 5**: CQRS
+
+---
+
+Run mobile app with :
+
+```bash
+npx expo start --tunnel
+```
