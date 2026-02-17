@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MyAwesomProgram")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b7532990fad5070c47676fadf06951bcb08508f1")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+629707248a51171c5549aca1881572a77a89f118")]
 [assembly: System.Reflection.AssemblyProductAttribute("MyAwesomProgram")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MyAwesomProgram")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
