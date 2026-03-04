@@ -66,7 +66,23 @@ namespace VideoGameApi.Controllers
             videoGames.Add(newGame);
             return CreatedAtAction(nameof(GetVideoGameById), new { id = newGame.Id }, newGame);
         }
-        
+
+        [HttpPut("{id}")]
+        public IActionResult UpdateVideoGame(int id, VideoGame updatedGame)
+        {
+            var  game = videoGames.FirstOrDefault(g => g.Id == id);
+            if (game == null)
+            {
+                return NotFound();
+            }
+            
+            game.Title = updatedGame.Title;
+            game.Platform = updatedGame.Platform;
+            game.Developer = updatedGame.Developer;
+            game.Publisher = updatedGame.Publisher;
+            
+            return NoContent();
+        }
         // http://localhost:5111/scalar/v1
     }
 }
