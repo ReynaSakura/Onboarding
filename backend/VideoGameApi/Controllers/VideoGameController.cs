@@ -83,6 +83,20 @@ namespace VideoGameApi.Controllers
             
             return NoContent();
         }
+
+        [HttpDelete("{id}")]
+        public IActionResult DeleteVideoGame(int id)
+        {
+            var game = videoGames.FirstOrDefault(g => g.Id == id);
+            if (game == null)
+            {
+                return NotFound();
+            }
+            
+            videoGames.Remove(game);
+            return NoContent();
+        }
+        
         // http://localhost:5111/scalar/v1
     }
 }
