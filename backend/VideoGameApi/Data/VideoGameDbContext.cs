@@ -1,6 +1,8 @@
-﻿namespace VideoGameApi.Data;
+﻿using Microsoft.EntityFrameworkCore;
 
-public class VideoGameDbContext(DbContextOptions<VideoGameDbContext>  options) : DbContext(options)
+namespace VideoGameApi.Data;
+
+public class VideoGameDbContext(DbContextOptions<VideoGameDbContext> options) : DbContext(options)
 {
-    // YT video 39:44
+    public DbSet<VideoGame> VideoGames => Set<VideoGame>();
 }
