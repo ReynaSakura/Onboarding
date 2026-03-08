@@ -16,6 +16,7 @@ obj/
 *.user
 *.userosscache
 *.sln.docstates
+.vscode/
 
 # --- Node/Frontend ---
 node_modules/
