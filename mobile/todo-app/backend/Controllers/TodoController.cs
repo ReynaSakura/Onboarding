@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TodoApi.Data;
+using TodoApi.Dtos;
 using TodoApi.Models;
 
 namespace TodoApi.Controllers;
@@ -34,21 +35,25 @@ public class TodoController(ApplicationDbContext context) : ControllerBase
     }
 
     [HttpPost]
-    public async Task<ActionResult<TaskItem>> AddTodo(TaskItem newTodo)
+    public async Task<ActionResult<TaskItem>> AddTodo(TodoRequestDto newTodoDto)
     {
-        if (newTodo == null)
+        var todo = new TaskItem
         {
-            return BadRequest();
-        }
-
-        _context.TaskItems.Add(newTodo);
+            Title = newTodoDto.Title,
+            Description = newTodoDto.Description,
+            IsCompleted = newTodoDto.IsCompleted,
+            LabelId = newTodoDto.LabelId,
+            CreatedAt = DateTime.UtcNow
+        };
+        
+        _context.TaskItems.Add(todo);
         await _context.SaveChangesAsync();
 
-        return CreatedAtAction(nameof(GetTodoById), new { id = newTodo.Id }, newTodo);
+        return CreatedAtAction(nameof(GetTodoById), new { id = todo.Id }, todo);
     }
 
     [HttpPut("{id}")]
-    public async Task<IActionResult> UpdateTodo(int id, TaskItem updatedTodo)
+    public async Task<IActionResult> UpdateTodo(int id, TodoRequestDto updatedTodoDto)
     {
         var todo = await _context.TaskItems.FindAsync(id);
         if (todo == null)
@@ -56,10 +61,10 @@ public class TodoController(ApplicationDbContext context) : ControllerBase
             return NotFound();
         }
         
-        todo.Title = updatedTodo.Title;
-        todo.Description = updatedTodo.Description;
-        todo.IsCompleted = updatedTodo.IsCompleted;
-        todo.LabelId = updatedTodo.LabelId;
+        todo.Title = updatedTodoDto.Title;
+        todo.Description = updatedTodoDto.Description;
+        todo.IsCompleted = updatedTodoDto.IsCompleted;
+        todo.LabelId = updatedTodoDto.LabelId;
 
         await _context.SaveChangesAsync();
 
