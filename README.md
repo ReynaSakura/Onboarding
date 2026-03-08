@@ -50,8 +50,8 @@ Located in `/backend`
 ### 🖥️ Backend Onboarding
 
 - [x] **Module 0**: Backend Fundamentals (C#, .NET)
-- [ ] **Module 1**: EFCore and Basic Web API
-- [ ] **Module 2**: Web API Project (Todo App)
+- [X] **Module 1**: EFCore and Basic Web API
+- [X] **Module 2**: Web API Project (Todo App)
 - [ ] **Module 3**: Connect Frontend to API
 - [ ] **Module 4**: EF Core relations
 - [ ] **Module 5**: CQRS
