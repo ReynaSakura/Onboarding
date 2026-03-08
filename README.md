@@ -49,7 +49,7 @@ Located in `/backend`
 
 ### 🖥️ Backend Onboarding
 
-- [ ] **Module 0**: Backend Fundamentals (C#, .NET)
+- [x] **Module 0**: Backend Fundamentals (C#, .NET)
 - [ ] **Module 1**: EFCore and Basic Web API
 - [ ] **Module 2**: Web API Project (Todo App)
 - [ ] **Module 3**: Connect Frontend to API
